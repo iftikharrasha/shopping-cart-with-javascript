@@ -29,7 +29,7 @@
                            <input id="input_one" type="text" class="form-control text-center" value="1">
                            <button id="plus_one" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5 id="single_amount_one">$1219</h5>
+                        <h5>$<span id="iphone_price">1240</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -48,7 +48,7 @@
                            <button id="plus_two" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$<span id="case_price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -56,7 +56,6 @@
 
                <div class="cart-item">
                   <div class="row">
-
                      <div class="col-md-8">
                         <h5>Subtotal: </h5>
                         <h5>Tax:</h5>
@@ -84,18 +83,8 @@
       plusOne.addEventListener('click', function(){
 
          const numbersOne = parsingInt("input_one");  //make string to int
-         howMany("input_one", numbersOne); //count items
-
-         function parsingInt(idName){
-            const amounts = document.getElementById(idName).value;  //"1"
-            const amountInt = parseFloat(amounts); //1
-            return amountInt;
-         }
-
-         function howMany(idName, addedItem){
-            const total = addedItem + 1; //2
-            document.getElementById(idName).value = total; //setting this value 2++
-         }
+         const itemsOne = howMany("input_one", numbersOne); //count items
+         const priceOne = calculateOne("iphone_price", itemsOne);
       })
 
       //phone one button event handler with minus sign
@@ -103,18 +92,8 @@
       minusOne.addEventListener('click', function(){
 
          const numbersOne = parsingInt("input_one");  //make string to int
-         howMany("input_one", numbersOne); //count items
-
-         function parsingInt(idName){
-            const amounts = document.getElementById(idName).value;  //"1"
-            const amountInt = parseFloat(amounts); //1
-            return amountInt;
-         }
-
-         function howMany(idName, addedItem){
-            const total = addedItem - 1; //2
-            document.getElementById(idName).value = total; //setting this value 2++
-         }
+         const itemsOne = howManyMinus("input_one", numbersOne); //count items
+         const priceOne = calculateOne("iphone_price", itemsOne);
       })
 
       //phone two button event handler with plus sign
@@ -122,18 +101,8 @@
       plusTwo.addEventListener('click', function(){
 
          const numbersOne = parsingInt("input_two");  //make string to int
-         howMany("input_two", numbersOne); //count items
-
-         function parsingInt(idName){
-            const amounts = document.getElementById(idName).value;  //"1"
-            const amountInt = parseFloat(amounts); //1
-            return amountInt;
-         }
-
-         function howMany(idName, addedItem){
-            const total = addedItem + 1; //2
-            document.getElementById(idName).value = total; //setting this value 2++
-         }
+         const itemsTwo = howMany("input_two", numbersOne); //count items
+         const priceTwo = calculateTwo("case_price", itemsTwo);
       })
 
       //phone two button event handler with minus sign
@@ -141,19 +110,39 @@
       minusTwo.addEventListener('click', function(){
 
          const numbersTwo = parsingInt("input_two");  //make string to int
-         howMany("input_two", numbersTwo); //count items
-
-         function parsingInt(idName){
-            const amounts = document.getElementById(idName).value;  //"1"
-            const amountInt = parseFloat(amounts); //1
-            return amountInt;
-         }
-
-         function howMany(idName, addedItem){
-            const total = addedItem - 1; //2
-            document.getElementById(idName).value = total; //setting this value 1--
-         }
+         const itemsTwo = howManyMinus("input_two", numbersTwo); //count items
+         const priceTwo = calculateTwo("case_price", itemsTwo);
       })
+
+      function parsingInt(idName){
+         const amounts = document.getElementById(idName).value;  //"1"
+         const amountInt = parseFloat(amounts); //1
+         return amountInt;
+      }
+
+      function howMany(idName, addedItem){
+         const total = addedItem + 1; //2
+         const count = document.getElementById(idName).value = total; //setting this value 2++
+         return count;
+      }
+
+      function calculateOne(idName, value){
+         const current = document.getElementById(idName).innerText; //"1240"
+         const totalPrice = 1240 * value; //1240*n
+         document.getElementById(idName).innerText = totalPrice; //setting this value 1240*n
+      }
+
+      function howManyMinus(idName, addedItem){
+         const total = addedItem - 1; //2
+         const count = document.getElementById(idName).value = total; //setting this value 2++
+         return count;
+      }
+
+      function calculateTwo(idName, value){
+          const current = document.getElementById(idName).innerText; //"59"
+         const totalPrice = 59 * value; //59*n
+         document.getElementById(idName).innerText = totalPrice; //setting this value 1240*n
+      }
    </script>
 </body>
 
